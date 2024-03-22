@@ -1,46 +1,47 @@
+# coding=utf-8
 # Imports des sprites et des variables
 from sprites import *
 from variables import *
 
 
 for i in range(randint(50, 100)):
-    b = pièces[randint(0, 14)]
-    b.déplacement()
+    b = pieces[randint(0, 14)]
+    b.deplacement()
 
 # Boucle de jeu
 while not arret_jeu :
     
 
 
-    # Récupération des évènements
+    # Recuperation des evenements
     for event in pygame.event.get() :
 
-        # Évènements du clavier
+        # Evenements du clavier
         if event.type == pygame.KEYDOWN:
 
-            if event.key == pygame.K_ESCAPE : # Touche échap = fermeture de la fenêtre
+            if event.key == pygame.K_ESCAPE : # Touche echap = fermeture de la fenêtre
                 arret_jeu = True
 
-            if event.key == pygame.K_f: # Touche F = aide au débuggage, résout automatiquement le puzzle
+            if event.key == pygame.K_f: # Touche F = aide au debuggage, resout automatiquement le puzzle
                 indic = 0
                 for i in all_sprites:
-                    i.x = coordonnées2[indic][0]
-                    i.y = coordonnées2[indic][1]
+                    i.x = coordonnees2[indic][0]
+                    i.y = coordonnees2[indic][1]
                     indic += 1
 
-        # Évènements de la souris, permet d'appeler la méthode déplacement() de l'instance de la classe Pièce() qui a été cliquée
+        # Evenements de la souris, permet d'appeler la methode deplacement() de l'instance de la classe Piece() qui a ete cliquee
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
-            for pièce in all_sprites:
-                if pièce.x <= pos[0] < pièce.x + 120 and pièce.y <= pos[1] < pièce.y + 120:
-                    pièce.déplacement()
+            for piece in all_sprites:
+                if piece.x <= pos[0] < piece.x + 120 and piece.y <= pos[1] < piece.y + 120:
+                    piece.deplacement()
                     break
 
-        # Fermeture de la fenêtre quand la croix est cliquée
+        # Fermeture de la fenêtre quand la croix est cliquee
         if event.type == pygame.QUIT:
             sys.exit()
 
-    # Définition des variables liées à la condition de victoire
+    # Definition des variables liees a la condition de victoire
     x = 0
     y = 0
 
@@ -72,6 +73,6 @@ while not arret_jeu :
     pygame.draw.line(ecran, noir, (0, 360), (480, 360))
 
 
-    # Mise à jour des objets et de l'écran
+    # Mise a jour des objets et de l'ecran
     all_sprites.update()
     pygame.display.update()
