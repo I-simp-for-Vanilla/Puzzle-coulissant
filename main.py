@@ -76,3 +76,5 @@ while not arret_jeu :
     # Mise a jour des objets et de l'ecran
     all_sprites.update()
     pygame.display.update()
+
+    #à ne pas garder, surtout pas
